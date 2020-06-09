@@ -6,11 +6,14 @@ import javax.validation.Valid;
 
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.repository.EstudanteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// TODO Efetue a implementação dos métodos da classe service
-public class EstudanteServiceImpl implements EstudandeService {
+@Service
+public class EstudanteServiceImpl implements EstudanteService {
 
-	EstudanteRepository repository;
+	@Autowired
+	private EstudanteRepository estudanteRepository;
 
 	@Override
 	public void cadastrarEstudante(@Valid Estudante estudante) {
@@ -24,6 +27,8 @@ public class EstudanteServiceImpl implements EstudandeService {
 
 	@Override
 	public List<Estudante> buscarEstudantes() {
+		//List<Estudante> estudantes = estudanteRepository.findAll();
+		//return estudantes;
 		return null;
 	}
 
