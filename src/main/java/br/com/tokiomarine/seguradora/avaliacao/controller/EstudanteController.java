@@ -19,7 +19,7 @@ public class EstudanteController {
 	private EstudanteServiceImpl estudandeService;
 
 	@GetMapping("criar")
-	public String iniciarCastrado(Estudante estudante) {
+	public String iniciarCadastro(Estudante estudante) {
 		return "cadastrar-estudante";
 	}
 
@@ -29,16 +29,16 @@ public class EstudanteController {
 		return "index";
 	}
 
-	@PostMapping("add")
-	public String adicionarEstudante(@Valid Estudante estudante, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			return "cadastrar-estudante";
-		}
+	//@PostMapping("add")
+	//public String adicionarEstudante(@Valid Estudante estudante, BindingResult result, Model model) {
+	//	if (result.hasErrors()) {
+	//		return "cadastrar-estudante";
+	//	}
 
-		estudandeService.cadastrarEstudante(estudante);
+	//	estudandeService.cadastrarEstudante(estudante);
 
-		return "redirect:listar";
-	}
+	//	return "redirect:listar";
+	//}
 
 	@GetMapping("editar/{id}")
 	public String exibirEdicaoEstudante(long id, Model model) {

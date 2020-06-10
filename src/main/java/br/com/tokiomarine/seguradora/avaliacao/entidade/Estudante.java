@@ -1,5 +1,7 @@
 package br.com.tokiomarine.seguradora.avaliacao.entidade;
 
+import org.hibernate.ObjectNotFoundException;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +22,19 @@ public class Estudante {
     private String nome;
 
     @Email(message = "O formato do email é invalido")
-    @NotNull(message = "Nome é obrigatório")
+    @NotNull(message = "Email é obrigatório")
     private String email;
 
     private int telefone;
 
     public Estudante() {
 
+    }
+
+    public Estudante(String nome, String email, int telefone) throws ObjectNotFoundException {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
     }
 
     public int getId() {

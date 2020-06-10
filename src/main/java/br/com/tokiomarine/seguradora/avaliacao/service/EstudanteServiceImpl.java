@@ -16,13 +16,14 @@ public class EstudanteServiceImpl implements EstudanteService {
 	private EstudanteRepository estudanteRepository;
 
 	@Override
-	public void cadastrarEstudante(@Valid Estudante estudante) {
-
+	public Estudante cadastrarEstudante(@Valid Estudante estudante) {
+		Estudante estudanteObjeto = estudanteRepository.save(estudante);
+		return estudanteObjeto;
 	}
 
 	@Override
-	public void atualizarEstudante(@Valid Estudante estudante) {
-
+	public Estudante atualizarEstudante(@Valid Estudante estudante) {
+		return null;
 	}
 
 	@Override
