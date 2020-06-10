@@ -1,11 +1,8 @@
 package br.com.tokiomarine.seguradora.avaliacao.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
@@ -62,10 +59,10 @@ public class EstudanteController {
 	//	return "index";
 	//}
 
-	@GetMapping("apagar/{id}")
-	public String apagarEstudante(@PathVariable("id") long id, Model model) {
-		// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
-		model.addAttribute("estudantes", estudandeService.buscarEstudantes());
-		return "index";
-	}
+	//@GetMapping("apagar/{id}")
+	//public String apagarEstudante(@PathVariable("id") long id, Model model) {
+	//	// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
+	//	model.addAttribute("estudantes", estudandeService.buscarEstudantes());
+	//	return "index";
+	//}
 }

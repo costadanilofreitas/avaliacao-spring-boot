@@ -46,4 +46,9 @@ public class EstudanteServiceImpl implements EstudanteService {
 		Optional<Estudante> estudantes = estudanteRepository.findById(aux);
 		return estudantes;
 	}
+
+	@Override
+	public void deletarEstudante(Estudante estudante){
+		estudanteRepository.delete(estudante);
+	}
 }

@@ -18,4 +18,6 @@ public interface EstudanteService {
 
 	Estudante atualizarEstudante(@Valid Estudante estudante);
 
+	void deletarEstudante(Estudante estudante);
+
 }

@@ -59,5 +59,14 @@ public class EstudanteRestController {
         }
     }
 
-	// TODO IMPLEMENTAR A EXCLUSÃO DE ESTUDANTES (DELETE)
+    @DeleteMapping("apagar/{id}")
+    public Estudante apagarEstudante(@PathVariable("id") long id) {
+        Optional<Estudante> estudanteOptional = estudandeService.buscarEstudante(id);;
+        if(estudanteOptional.isPresent()){
+            estudandeService.deletarEstudante(estudanteOptional.get());
+            return estudanteOptional.get();
+        }
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+    }
+
 }
