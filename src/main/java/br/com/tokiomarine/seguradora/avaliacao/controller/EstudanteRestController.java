@@ -3,13 +3,15 @@ package br.com.tokiomarine.seguradora.avaliacao.controller;
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.service.EstudanteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/estudantes/")
@@ -29,7 +31,21 @@ public class EstudanteRestController {
 
 	// TODO IMPLEMENTAR ATUALIZACAO DE ESTUDANTES (PUT)
 
-	// TODO IMPLEMENTAR A LISTAGEM DE ESTUDANTES (GET)
+    @GetMapping("listar")
+    public Iterable<Estudante> listarEstudantes() {
+        return estudandeService.buscarEstudantes();
+    }
+
+    @GetMapping("listar/{id}")
+    public Estudante buscarEstudante(@PathVariable int id){
+        Optional<Estudante> estudanteOptional = estudandeService.buscarEstudante(id);
+
+        if(estudanteOptional.isPresent()){
+            return estudanteOptional.get();
+        }else{
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+    }
 
 	// TODO IMPLEMENTAR A EXCLUSÃO DE ESTUDANTES (DELETE)
 }

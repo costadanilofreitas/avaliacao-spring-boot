@@ -9,6 +9,8 @@ import br.com.tokiomarine.seguradora.avaliacao.repository.EstudanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EstudanteServiceImpl implements EstudanteService {
 
@@ -23,19 +25,19 @@ public class EstudanteServiceImpl implements EstudanteService {
 
 	@Override
 	public Estudante atualizarEstudante(@Valid Estudante estudante) {
-		return null;
+		return estudante;
 	}
 
 	@Override
-	public List<Estudante> buscarEstudantes() {
-		//List<Estudante> estudantes = estudanteRepository.findAll();
-		//return estudantes;
-		return null;
+	public Iterable<Estudante> buscarEstudantes() {
+		Iterable<Estudante> estudantes = estudanteRepository.findAll();
+		return estudantes;
 	}
 
 	@Override
-	public Estudante buscarEstudante(long id) {
-		throw new IllegalArgumentException("Identificador inválido:" + id);
+	public Optional<Estudante> buscarEstudante(long id) {
+		Integer aux = (int) (long) id;
+		Optional<Estudante> estudantes = estudanteRepository.findById(aux);
+		return estudantes;
 	}
-
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.service.EstudanteServiceImpl;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/estudantes/")
 public class EstudanteController {
@@ -23,11 +25,11 @@ public class EstudanteController {
 		return "cadastrar-estudante";
 	}
 
-	@GetMapping("listar")
-	public String listarEstudantes(Model model) {
-		model.addAttribute("estudantes", estudandeService.buscarEstudantes());
-		return "index";
-	}
+	//@GetMapping("listar")
+	//public String listarEstudantes(Model model) {
+	//	model.addAttribute("estudantes", estudandeService.buscarEstudantes());
+	//	return "index";
+	//}
 
 	//@PostMapping("add")
 	//public String adicionarEstudante(@Valid Estudante estudante, BindingResult result, Model model) {
@@ -42,8 +44,8 @@ public class EstudanteController {
 
 	@GetMapping("editar/{id}")
 	public String exibirEdicaoEstudante(long id, Model model) {
-		Estudante estudante = estudandeService.buscarEstudante(id);
-		model.addAttribute("estudante", estudante);
+		Optional<Estudante> estudante = estudandeService.buscarEstudante(id);
+		//model.addAttribute("estudante", estudante);
 		return "atualizar-estudante";
 	}
 
