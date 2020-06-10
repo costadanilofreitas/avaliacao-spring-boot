@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.repository.EstudanteRepository;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,12 @@ public class EstudanteServiceImpl implements EstudanteService {
 
 	@Override
 	public Estudante atualizarEstudante(@Valid Estudante estudante) {
-		return estudante;
+		Optional<Estudante> estudanteOptional = buscarEstudante(estudante.getId());
+		if (estudanteOptional.isPresent()){
+			Estudante estudanteObjeto = estudanteRepository.save(estudante);
+			return estudanteObjeto;
+		}
+		throw new ObjectNotFoundException(Estudante.class, "O estudante não foi encontrato");
 	}
 
 	@Override

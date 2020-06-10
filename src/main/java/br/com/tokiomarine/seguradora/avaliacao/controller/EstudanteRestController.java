@@ -5,6 +5,8 @@ import br.com.tokiomarine.seguradora.avaliacao.service.EstudanteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,7 +31,17 @@ public class EstudanteRestController {
         return ResponseEntity.status(201).body(estudanteObjeto);
     }
 
-	// TODO IMPLEMENTAR ATUALIZACAO DE ESTUDANTES (PUT)
+    @PutMapping("atualizar/{id}")
+    public Estudante atualizarEstudante(@PathVariable("id") long id, @RequestBody @Valid Estudante estudante) {
+        int aux = (int) (long) id;
+        estudante.setId(aux);
+        try {
+            Estudante estudanteObjeto = estudandeService.atualizarEstudante(estudante);
+            return estudanteObjeto;
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
+        }
+    }
 
     @GetMapping("listar")
     public Iterable<Estudante> listarEstudantes() {

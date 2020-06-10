@@ -45,22 +45,22 @@ public class EstudanteController {
 	@GetMapping("editar/{id}")
 	public String exibirEdicaoEstudante(long id, Model model) {
 		Optional<Estudante> estudante = estudandeService.buscarEstudante(id);
-		//model.addAttribute("estudante", estudante);
+		model.addAttribute("estudante", estudante);
 		return "atualizar-estudante";
 	}
 
-	@PostMapping("atualizar/{id}")
-	public String atualizarEstudante(@PathVariable("id") long id, @Valid Estudante estudante, BindingResult result, Model model) {
-		if (result.hasErrors()) {
+	//@PostMapping("atualizar/{id}")
+	//public String atualizarEstudante(@PathVariable("id") long id, @Valid Estudante estudante, BindingResult result, Model model) {
+	//	if (result.hasErrors()) {
 			// estudante.setId(id);
-			return "atualizar-estudante";
-		}
+	//		return "atualizar-estudante";
+	//	}
 
-		estudandeService.atualizarEstudante(estudante);
+	//	estudandeService.atualizarEstudante(estudante);
 
-		model.addAttribute("estudantes", estudandeService.buscarEstudantes());
-		return "index";
-	}
+	//	model.addAttribute("estudantes", estudandeService.buscarEstudantes());
+	//	return "index";
+	//}
 
 	@GetMapping("apagar/{id}")
 	public String apagarEstudante(@PathVariable("id") long id, Model model) {
