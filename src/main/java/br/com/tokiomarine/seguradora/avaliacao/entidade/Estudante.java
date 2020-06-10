@@ -17,7 +17,6 @@ public class Estudante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min = 8, max = 100, message = "O nome deve ter entre 8 a 100 caracteres ")
     @NotNull(message = "Nome é obrigatório")
     private String nome;
 
@@ -27,14 +26,21 @@ public class Estudante {
 
     private int telefone;
 
+    @NotNull(message = "Matrícula é obrigatória")
+    private int matricula;
+
+    private String curso;
+
     public Estudante() {
 
     }
 
-    public Estudante(String nome, String email, int telefone) throws ObjectNotFoundException {
+    public Estudante(String nome, String email, int telefone, int matricula, String curso) throws ObjectNotFoundException {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.matricula = matricula;
+        this.curso = curso;
     }
 
     public int getId() {
@@ -67,6 +73,22 @@ public class Estudante {
 
     public void setTelefone(int telefone) {
         this.telefone = telefone;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 
 }
