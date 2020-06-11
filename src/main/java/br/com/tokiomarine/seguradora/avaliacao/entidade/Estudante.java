@@ -2,33 +2,36 @@ package br.com.tokiomarine.seguradora.avaliacao.entidade;
 
 import org.hibernate.ObjectNotFoundException;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="ESTUDANTE_TESTE")
 public class Estudante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "identificador_estudante")
     private int id;
 
     @NotNull(message = "Nome é obrigatório")
+    @Column(name = "nome_estudante")
     private String nome;
 
     @Email(message = "O formato do email é invalido")
     @NotNull(message = "Email é obrigatório")
+    @Column(name = "email_estudante")
     private String email;
 
+    @Column(name = "telefone_estudante")
     private int telefone;
 
     @NotNull(message = "Matrícula é obrigatória")
+    @Column(name = "matricula_estudante")
     private int matricula;
 
+    @Column(name = "curso_estudante")
     private String curso;
 
     public Estudante() {
